@@ -14,3 +14,14 @@ export function App() {
     </>
   )
 }
+
+// quick-and-dirty HMR for SSR?
+if (import.meta.env.SSR && import.meta.hot) {
+  // setup proxy to latest module via globalThis
+  (globalThis as any).__ssrHmrApp = App;
+  // @ts-ignore
+  App = function(...args: any[]) {
+    return (globalThis as any).__ssrHmrApp(...args)
+  }
+  import.meta.hot.accept();
+}
