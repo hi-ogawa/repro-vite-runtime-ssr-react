@@ -11,8 +11,6 @@ export function App() {
           count is {count}
         </button>
       </div>
-      <p>When using ViteRuntime, hydration error after edit 'src/App.tsx' and reload.</p>
-      <p>Editing 'src/server.ts' will full reload.</p>
     </>
   )
 }
