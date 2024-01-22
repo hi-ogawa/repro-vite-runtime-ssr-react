@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
     devPlugin({
       entry: "/src/server.ts",
-      useViteRuntime: false,
+      useViteRuntime: true,
     })
   ]
 })
@@ -36,7 +36,7 @@ function devPlugin({
       if (useViteRuntime) {
         const vite: any = await import("vite");
         const runtime = await vite.createViteRuntime(server);
-        loadModule = runtime.executeEntrypoint;
+        loadModule = runtime.executeEntrypoint.bind(runtime);
       }
 
       const handler: Connect.NextHandleFunction = async (req, res, next) => {

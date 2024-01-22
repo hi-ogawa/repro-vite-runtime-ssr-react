@@ -11,6 +11,7 @@ export function App() {
           count is {count}
         </button>
       </div>
+      <p>When using ViteRuntime, hydration error after edit + reload</p>
     </>
   )
 }
