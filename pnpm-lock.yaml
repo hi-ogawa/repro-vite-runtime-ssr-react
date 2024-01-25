@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  vite: file:./vite-5.1.0-beta.2.tgz
+  vite: https://github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz
 
 dependencies:
   express:
@@ -41,8 +41,8 @@ devDependencies:
     specifier: ^5.3.3
     version: 5.3.3
   vite:
-    specifier: file:/home/hiroshi/code/tmp/repro-vite-runtime-ssr-react/vite-5.1.0-beta.2.tgz
-    version: file:vite-5.1.0-beta.2.tgz(@types/node@20.11.5)
+    specifier: https://github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz
+    version: '@github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz(@types/node@20.11.5)'
 
 packages:
 
@@ -742,14 +742,14 @@ packages:
     resolution: {integrity: sha512-oojO9IDc4nCUUi8qIR11KoQm0XFFLIwsRBwHRR4d/88IWghn1y6ckz/bJ8GHDCsYEJee8mDzqtJxh15/cisJNQ==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
-      vite: file:/home/hiroshi/code/tmp/repro-vite-runtime-ssr-react/vite-5.1.0-beta.2.tgz
+      vite: https://github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz
     dependencies:
       '@babel/core': 7.23.7
       '@babel/plugin-transform-react-jsx-self': 7.23.3(@babel/core@7.23.7)
       '@babel/plugin-transform-react-jsx-source': 7.23.3(@babel/core@7.23.7)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: file:vite-5.1.0-beta.2.tgz(@types/node@20.11.5)
+      vite: '@github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz(@types/node@20.11.5)'
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1521,9 +1521,9 @@ packages:
     resolution: {integrity: sha512-a4UGQaWPH59mOXUYnAG2ewncQS4i4F43Tv3JoAM+s2VDAmS9NsK8GpDMLrCHPksFT7h3K6TOoUNn2pb7RoXx4g==}
     dev: true
 
-  file:vite-5.1.0-beta.2.tgz(@types/node@20.11.5):
-    resolution: {integrity: sha512-RB6QFdSd4gjcDGMINHG0LCmMsLLUULeeaYig+bQ8FtVLq3ZTus7JOhTNyg5h2QTtcxq06FDkpuxm4v2aZbkVtg==, tarball: file:vite-5.1.0-beta.2.tgz}
-    id: file:vite-5.1.0-beta.2.tgz
+  '@github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz(@types/node@20.11.5)':
+    resolution: {tarball: https://github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz}
+    id: '@github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz'
     name: vite
     version: 5.1.0-beta.2
     engines: {node: ^18.0.0 || >=20.0.0}
