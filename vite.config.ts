@@ -13,7 +13,7 @@ export default defineConfig({
   plugins: [
     react(),
     ssrHmrPlugin({
-      include: ["**/src/App.tsx"],
+      include: ["**/src/**/*.tsx"],
     }),
     devPlugin({
       entry: "/src/server.ts",
@@ -114,7 +114,7 @@ if (import.meta.env.SSR && import.meta.hot) {
   const $$hmr = await import("/src/hmr");
   const $$registry = $$hmr.createRegistry();
 
-${parts}
+${parts.join("\n")}
 
   $$hmr.setupHot(import.meta.hot, $$registry);
 }
