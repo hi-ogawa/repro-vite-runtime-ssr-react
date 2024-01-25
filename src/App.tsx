@@ -15,13 +15,18 @@ export function App() {
   )
 }
 
-// quick-and-dirty HMR for SSR?
+// TODO: implement as transform plugin
 if (import.meta.env.SSR && import.meta.hot) {
-  // setup proxy to latest module via globalThis
-  (globalThis as any).__ssrHmrApp = App;
-  // @ts-ignore
-  App = function(...args: any[]) {
-    return (globalThis as any).__ssrHmrApp(...args)
-  }
-  import.meta.hot.accept();
+  const $$hmr = await import("./hmr");
+  const $$registry = $$hmr.createRegistry();
+
+  $$registry.exports["App"] = {
+    value: App,
+    update: ($$next) => {
+      // @ts-ignore
+      App = $$next;
+    }
+  };
+
+  $$hmr.setupHot(import.meta.hot, $$registry);
 }
