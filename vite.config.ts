@@ -85,6 +85,24 @@ function ssrHmrPlugin(pluginOpts: {
 }
 
 function ssrHmrTransform(code: string): string {
+  // transform to inject something like below
+  /*
+    if (import.meta.env.SSR && import.meta.hot) {
+      const $$hmr = await import("./hmr");
+      const $$registry = $$hmr.createRegistry();
+
+      $$registry.exports["App"] = {
+        value: App,
+        update: ($$next) => {
+          // @ts-ignore
+          App = $$next;
+        }
+      };
+
+      $$hmr.setupHot(import.meta.hot, $$registry);
+    }
+  */
+
   // TODO: use vite/rollup parser
   // TODO: replace `export const` with `export let` for reassignment
   // TODO: magic-string + sourcemap
