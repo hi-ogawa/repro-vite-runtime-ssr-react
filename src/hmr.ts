@@ -1,3 +1,5 @@
+// runtime part of `ssrHmrPlugin` in `vite.config.ts`
+
 // simple automatic HMR for SSR
 // - full reload if export names changed
 // - otherwise reassign all exports

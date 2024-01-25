@@ -14,19 +14,3 @@ export function App() {
     </>
   )
 }
-
-// TODO: implement as transform plugin
-if (import.meta.env.SSR && import.meta.hot) {
-  const $$hmr = await import("./hmr");
-  const $$registry = $$hmr.createRegistry();
-
-  $$registry.exports["App"] = {
-    value: App,
-    update: ($$next) => {
-      // @ts-ignore
-      App = $$next;
-    }
-  };
-
-  $$hmr.setupHot(import.meta.hot, $$registry);
-}
