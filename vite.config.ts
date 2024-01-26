@@ -77,14 +77,14 @@ function ssrHmrPlugin(pluginOpts: {
 
     transform(code, id, options) {
       if (options.ssr && filter(id)) {
-        return ssrHmrTransform(code);
+        return ssrHmrTransform(code, id);
       }
       return;
     },
   };
 }
 
-function ssrHmrTransform(code: string): string {
+function ssrHmrTransform(code: string, id: string): string {
   // transform to inject something like below
   /*
     if (import.meta.env.SSR && import.meta.hot) {
@@ -110,6 +110,9 @@ function ssrHmrTransform(code: string): string {
   // extract named exports
   const matches = code.matchAll(/export\s+(function|let)\s+(\w+)\b/g);
   const exportNames = Array.from(matches).map((m) => m[2]);
+  if (0) {
+    console.log({ id }, exportNames)
+  }
 
   if (exportNames.length === 0) {
     return undefined;
@@ -135,6 +138,7 @@ if (import.meta.env.SSR && import.meta.hot) {
 ${parts.join("\n")}
 
   $$hmr.setupHot(import.meta.hot, $$registry);
+  import.meta.hot.accept; // dummy code for vite's "hot.accept" detection
 }
 `;
   return code + footer;
