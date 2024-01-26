@@ -24,20 +24,21 @@ interface Export {
 
 interface Registry {
   exports: Record<string, Export>;
-  // keep reference to first Registry to apply replacement against
-  activeExports?: Record<string, Export>;
+  // keep track of all exports of hot update history
+  // since currently "writer" is responsible to keep old module up-to-date
+  // while each export could be used by other module at any point in time
+  // but this approach obviously leaks memory indefinitely
+  // (alternative is to let "reader" be responsible for looking up latest module using proxy)
+  history: Record<string, Export>[];
 }
 
 export function createRegistry(): Registry {
-  return { exports: {} };
+  const exports = {};
+  return { exports, history: [exports] };
 }
 
 function patchRegistry(current: Registry, next: Registry): boolean {
-  // keep reference to first replaceers
-  const activeExports = current.activeExports ?? current.exports;
-  next.activeExports = activeExports;
-
-  // replace all exports or full reload
+  // replace all exports in history or full reload
   const keys = [
     ...new Set([...Object.keys(current.exports), ...Object.keys(next.exports)]),
   ];
@@ -50,8 +51,12 @@ function patchRegistry(current: Registry, next: Registry): boolean {
   }
   for (const key of keys) {
     console.log("[simple-hmr]", key);
-    activeExports[key].update(next.exports[key].value);
+    for (const e of current.history) {
+      e[key].update(next.exports[key].value);
+    }
   }
+  next.history = current.history;
+  next.history.push(next.exports);
   return true;
 }
 
