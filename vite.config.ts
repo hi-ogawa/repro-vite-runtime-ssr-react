@@ -1,7 +1,11 @@
-import { defineConfig, type Plugin, type Connect } from 'vite'
-import react from '@vitejs/plugin-react'
+import {
+  defineConfig,
+  type Plugin,
+  type Connect,
+  createViteRuntime,
+} from "vite";
+import react from "@vitejs/plugin-react";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   clearScreen: false,
   plugins: [
@@ -9,9 +13,9 @@ export default defineConfig({
     devPlugin({
       entry: "/src/server.ts",
       useViteRuntime: true,
-    })
-  ]
-})
+    }),
+  ],
+});
 
 // vavite style dev server with ViteRuntime.executeEntrypoint
 // https://github.com/hi-ogawa/vite-plugins/pull/156
@@ -19,7 +23,7 @@ function devPlugin({
   entry,
   useViteRuntime,
 }: {
-  entry: string
+  entry: string;
   useViteRuntime?: boolean;
 }): Plugin {
   return {
@@ -34,8 +38,7 @@ function devPlugin({
       // switch module loader
       let loadModule = server.ssrLoadModule;
       if (useViteRuntime) {
-        const vite: any = await import("vite");
-        const runtime = await vite.createViteRuntime(server);
+        const runtime = await createViteRuntime(server);
         loadModule = runtime.executeEntrypoint.bind(runtime);
       }
 
@@ -48,6 +51,6 @@ function devPlugin({
         }
       };
       return () => server.middlewares.use(handler);
-    }
-  }
+    },
+  };
 }

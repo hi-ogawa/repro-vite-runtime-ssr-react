@@ -7,23 +7,18 @@
     "dev": "vite dev"
   },
   "dependencies": {
-    "express": "^4.18.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21",
-    "@types/node": "^20.10.5",
-    "@types/react": "^18.2.45",
-    "@types/react-dom": "^18.2.18",
+    "@hiogawa/vite-node-miniflare": "0.0.3-pre.2",
+    "@hiogawa/vite-plugin-simple-hmr": "0.0.1-pre.0",
+    "@tsconfig/strictest": "^2.0.3",
+    "@types/node": "^20.11.17",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
     "@vitejs/plugin-react": "^4.2.1",
-    "cross-env": "^7.0.3",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "https://github.com/sapphi-red/vite-envs/raw/1df93407a0053bc838a8cf81753e48bfc912231a/vite-5.1.0-beta.2.tgz"
-    }
+    "vite": "^5.1.2"
   }
 }
