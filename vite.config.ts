@@ -5,11 +5,13 @@ import {
   createViteRuntime,
 } from "vite";
 import react from "@vitejs/plugin-react";
+import { vitePluginSimpleHmr } from "@hiogawa/vite-plugin-simple-hmr";
 
 export default defineConfig({
   clearScreen: false,
   plugins: [
     react(),
+    vitePluginSimpleHmr({ include: ["**/App.tsx"] }),
     devPlugin({
       entry: "/src/server.ts",
       useViteRuntime: true,

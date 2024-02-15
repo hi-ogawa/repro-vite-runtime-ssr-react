@@ -5,8 +5,10 @@ pnpm i
 pnpm dev
 ```
 
-_notes_
+_Notes_
 
-- hydration mismatch after editing `src/App.tsx` and reload browser
+- With the official React plugin, hydration mismatch occurs on next SSR after editing `src/App.tsx`:
   - client HMR works same as before
   - server module is not invalidated so next SSR and hydration don't match
+- I created `[@hiogawa/vite-plugin-simple-hmr]`(https://github.com/hi-ogawa/vite-plugins/tree/main/packages/vite-plugin-simple-hmr)
+  to update server modules and it seems to solve hydration issue of `.tsx` files.
