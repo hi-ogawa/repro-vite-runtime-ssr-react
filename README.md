@@ -1,14 +1,14 @@
-testing vite runtime https://github.com/vitejs/vite/pull/12165 for react ssr app
+Testing [`ViteRuntime`](https://github.com/vitejs/vite/discussions/15774) for React SSR app.
 
 ```sh
 pnpm i
 pnpm dev
 ```
 
-_notes_
+_Notes_
 
-- hydration mismatch after editing `src/App.tsx` and reload browser
-  - client HMR works as before
-  - server module tree is not invalidated so server render yields old version, thus hydration mismatch
-- editing `src/server.ts` will full reload (ok)
-- see https://github.com/hi-ogawa/repro-vite-runtime-ssr-react/pull/1 for quick-and-dirty ssr hmr
+- With the official React plugin, hydration mismatch occurs on next SSR after editing `src/App.tsx`:
+  - client HMR works same as before
+  - server module is not invalidated so next SSR and hydration don't match
+- I created `[@hiogawa/vite-plugin-simple-hmr]`(https://github.com/hi-ogawa/vite-plugins/tree/main/packages/vite-plugin-simple-hmr)
+  to update server modules and it seems to solve hydration issue of `.tsx` files.
